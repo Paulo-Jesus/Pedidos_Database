@@ -30,7 +30,7 @@ CREATE TABLE Usuario(
     Telefono VARCHAR(10) NOT NULL,
     Direccion VARCHAR(100) NOT NULL,
     Username VARCHAR(10) NOT NULL,
-    Contrasena VARCHAR(10) NOT NULL,
+    Contrasena VARCHAR(100) NOT NULL,
     IdRol INT NOT NULL,
     FOREIGN KEY (IdRol) REFERENCES Rol(IdRol),
     IdEmpresa INT NOT NULL,
@@ -39,15 +39,15 @@ CREATE TABLE Usuario(
     FOREIGN KEY (IdEstado) REFERENCES Estado(IdEstado),
 );
 
-CREATE TABLE Restaurante(
-    IdRestaurante INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
+CREATE TABLE Proovedor(
+    IdProovedor INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
     RUC VARCHAR(13) NOT NULL,
     Nombre VARCHAR(100) NOT NULL,
     Correo VARCHAR(100) NOT NULL,
     Telefono VARCHAR(10) NOT NULL,
     Direccion VARCHAR(100) NOT NULL,
     Username VARCHAR(10) NOT NULL,
-    Contrasena VARCHAR(10) NOT NULL,
+    Contrasena VARCHAR(100) NOT NULL,
     IdRol INT NOT NULL,
     FOREIGN KEY (IdRol) REFERENCES Rol(IdRol),
     IdEstado INT NOT NULL,
@@ -67,8 +67,8 @@ CREATE TABLE Producto(
     Imagen VARBINARY(MAX), 
     IdCategoria INT NOT NULL,
     FOREIGN KEY (IdCategoria) REFERENCES Categoria(IdCategoria),
-    IdRestaurante INT NOT NULL,
-    FOREIGN KEY (IdRestaurante) REFERENCES Restaurante(IdRestaurante),
+    IdProovedor INT NOT NULL,
+    FOREIGN KEY (IdProovedor) REFERENCES Proovedor(IdProovedor),
     IdEstado INT NOT NULL,
     FOREIGN KEY (IdEstado) REFERENCES Estado(IdEstado),
 );
@@ -78,8 +78,8 @@ CREATE TABLE Pedido(
     FechaPedido DATETIME DEFAULT GETDATE(),
     IdUsuario INT NOT NULL,
     FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario),
-    IdRestaurante INT NOT NULL,
-    FOREIGN KEY (IdRestaurante) REFERENCES Restaurante(IdRestaurante),
+    IdProovedor INT NOT NULL,
+    FOREIGN KEY (IdProovedor) REFERENCES Proovedor(IdProovedor),
     IdProducto INT NOT NULL,
     FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto),
     
