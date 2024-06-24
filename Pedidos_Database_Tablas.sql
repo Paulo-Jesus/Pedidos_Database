@@ -63,6 +63,8 @@ CREATE TABLE Producto(
     Descripcion VARCHAR(100) NOT NULL,
     Precio Decimal(3,2) NOT NULL,
     Imagen VARBINARY(MAX), 
+    IdProveedor INT NOT NULL,
+    FOREIGN KEY (IdProveedor) REFERENCES Proveedor(IdProveedor),
     IdCategoria INT NOT NULL,
     FOREIGN KEY (IdCategoria) REFERENCES Categoria(IdCategoria),
     IdEstado INT NOT NULL,
