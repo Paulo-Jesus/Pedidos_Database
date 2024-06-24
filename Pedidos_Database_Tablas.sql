@@ -1,5 +1,3 @@
-CREATE DATABASE IF NOT EXISTS Pedidos_Database;
-
 USE Pedidos_Database;
 
 CREATE TABLE Estado(
@@ -39,8 +37,8 @@ CREATE TABLE Usuario(
     FOREIGN KEY (IdEstado) REFERENCES Estado(IdEstado),
 );
 
-CREATE TABLE Proovedor(
-    IdProovedor INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
+CREATE TABLE Proveedor(
+    IdProveedor INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
     RUC VARCHAR(13) NOT NULL,
     Nombre VARCHAR(100) NOT NULL,
     Correo VARCHAR(100) NOT NULL,
@@ -67,8 +65,6 @@ CREATE TABLE Producto(
     Imagen VARBINARY(MAX), 
     IdCategoria INT NOT NULL,
     FOREIGN KEY (IdCategoria) REFERENCES Categoria(IdCategoria),
-    IdProovedor INT NOT NULL,
-    FOREIGN KEY (IdProovedor) REFERENCES Proovedor(IdProovedor),
     IdEstado INT NOT NULL,
     FOREIGN KEY (IdEstado) REFERENCES Estado(IdEstado),
 );
@@ -78,9 +74,25 @@ CREATE TABLE Pedido(
     FechaPedido DATETIME DEFAULT GETDATE(),
     IdUsuario INT NOT NULL,
     FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario),
-    IdProovedor INT NOT NULL,
-    FOREIGN KEY (IdProovedor) REFERENCES Proovedor(IdProovedor),
+    IdProveedor INT NOT NULL,
+    FOREIGN KEY (IdProveedor) REFERENCES Proveedor(IdProveedor),
     IdProducto INT NOT NULL,
     FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto),
     
+);
+
+CREATE TABLE MenuDetalle(
+    IdMenuDetalle INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
+    IdProducto INT NOT NULL,
+    FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto),
+);
+
+CREATE TABLE Menu(
+    IdMenu INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
+    FechaInicio DATETIME,
+    FechaFin DATETIME,
+    IdProveedor INT NOT NULL,
+    FOREIGN KEY (IdProveedor) REFERENCES Proveedor(IdProveedor),
+    IdMenuDetalle INT NOT NULL,
+    FOREIGN KEY (IdMenuDetalle) REFERENCES MenuDetalle(IdMenuDetalle),
 );
