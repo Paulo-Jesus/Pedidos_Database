@@ -20,17 +20,24 @@ CREATE TABLE Empresa(
     FOREIGN KEY (IdEstado) REFERENCES Estado(IdEstado)
 );
 
+CREATE TABLE Cuenta(
+    IdCuenta INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
+    Correo VARCHAR(100) NOT NULL,
+    Contrasena VARCHAR(100) NOT NULL,
+    IdRol INT NOT NULL,
+    FOREIGN KEY (IdRol) REFERENCES Rol(IdRol),
+    IdEstado INT NOT NULL,
+    FOREIGN KEY (IdEstado) REFERENCES Estado(IdEstado),
+);
+
 CREATE TABLE Usuario(
     IdUsuario INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
     Cedula VARCHAR(10) NOT NULL,
     Nombre VARCHAR(100) NOT NULL,
-    Correo VARCHAR(100) NOT NULL,
     Telefono VARCHAR(10) NOT NULL,
     Direccion VARCHAR(100) NOT NULL,
-    Username VARCHAR(10) NOT NULL,
-    Contrasena VARCHAR(100) NOT NULL,
-    IdRol INT NOT NULL,
-    FOREIGN KEY (IdRol) REFERENCES Rol(IdRol),
+    IdCuenta INT NOT NULL,
+    FOREIGN KEY (IdCuenta) REFERENCES Cuenta(IdCuenta),
     IdEmpresa INT NOT NULL,
     FOREIGN KEY (IdEmpresa) REFERENCES Empresa(IdEmpresa),
     IdEstado INT NOT NULL,
@@ -41,13 +48,11 @@ CREATE TABLE Proveedor(
     IdProveedor INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
     RUC VARCHAR(13) NOT NULL,
     Nombre VARCHAR(100) NOT NULL,
-    Correo VARCHAR(100) NOT NULL,
     Telefono VARCHAR(10) NOT NULL,
     Direccion VARCHAR(100) NOT NULL,
-    Username VARCHAR(10) NOT NULL,
-    Contrasena VARCHAR(100) NOT NULL,
-    IdRol INT NOT NULL,
-    FOREIGN KEY (IdRol) REFERENCES Rol(IdRol),
+    Logotipo VARBINARY(MAX),
+    IdCuenta INT NOT NULL,
+    FOREIGN KEY (IdCuenta) REFERENCES Cuenta(IdCuenta),
     IdEstado INT NOT NULL,
     FOREIGN KEY (IdEstado) REFERENCES Estado(IdEstado),
 );
