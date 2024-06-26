@@ -85,13 +85,6 @@ CREATE TABLE Pedido(
     FOREIGN KEY (IdProveedor) REFERENCES Proveedor(IdProveedor),
     IdProducto INT NOT NULL,
     FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto),
-    
-);
-
-CREATE TABLE MenuDetalle(
-    IdMenuDetalle INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
-    IdProducto INT NOT NULL,
-    FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto),
 );
 
 CREATE TABLE Menu(
@@ -100,6 +93,12 @@ CREATE TABLE Menu(
     FechaFin DATETIME,
     IdProveedor INT NOT NULL,
     FOREIGN KEY (IdProveedor) REFERENCES Proveedor(IdProveedor),
-    IdMenuDetalle INT NOT NULL,
-    FOREIGN KEY (IdMenuDetalle) REFERENCES MenuDetalle(IdMenuDetalle),
+);
+
+CREATE TABLE MenuDetalle(
+    IdMenuDetalle INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
+    IdProducto INT NOT NULL,
+    FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto),
+    IdMenu INT NOT NULL,
+    FOREIGN KEY (IdMenu) REFERENCES Menu(IdMenu),
 );
