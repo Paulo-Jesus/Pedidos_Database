@@ -1,4 +1,4 @@
-USE Pedidos_Database;
+CREATE DATABASE Pedidos_Database;
 
 CREATE TABLE Estado(
     IdEstado INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
