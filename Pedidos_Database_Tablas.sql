@@ -36,7 +36,7 @@ CREATE TABLE Usuario(
     Nombre VARCHAR(100) NOT NULL,
     Telefono VARCHAR(10) NOT NULL,
     Direccion VARCHAR(100) NOT NULL,
-    IdCuenta INT IDENTITY (1,1) NOT NULL,
+    IdCuenta INT NOT NULL,
     FOREIGN KEY (IdCuenta) REFERENCES Cuenta(IdCuenta),
     IdEmpresa INT NOT NULL,
     FOREIGN KEY (IdEmpresa) REFERENCES Empresa(IdEmpresa),
