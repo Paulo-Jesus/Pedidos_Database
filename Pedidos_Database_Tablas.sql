@@ -102,3 +102,11 @@ CREATE TABLE MenuDetalle(
     IdMenu INT NOT NULL,
     FOREIGN KEY (IdMenu) REFERENCES Menu(IdMenu),
 );
+
+CREATE TABLE Token(
+    IdToken INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
+    TokenCuerpo VARCHAR(MAX) NOT NULL,
+    IdCuenta INT NOT NULL,
+    FOREIGN KEY (IdCuenta) REFERENCES Cuenta(IdCuenta),
+    FechaExpiracion DATETIME NOT NULL;
+);
