@@ -108,5 +108,5 @@ CREATE TABLE Token(
     TokenCuerpo VARCHAR(MAX) NOT NULL,
     IdCuenta INT NOT NULL,
     FOREIGN KEY (IdCuenta) REFERENCES Cuenta(IdCuenta),
-    FechaExpiracion DATETIME NOT NULL;
+    FechaExpiracion DATETIME NOT NULL,
 );
